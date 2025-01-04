@@ -1,0 +1,205 @@
+@import url("https://fonts.googleapis.com/css2?family=Rethink+Sans:ital,wght@0,400..800;1,400..800&family=Spicy+Rice&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --main-1: #3a140b;
+  --main-2: #fff8db;
+  --background: var(--main-2);
+}
+h1 {
+  font-family: "Spicy Rice";
+  font-size: clamp(2.5rem, 8vw, 3.8125rem);
+  color: var(--main-1);
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-family: "Rethink Sans";
+  font-size: clamp(1.875rem, 6vw, 2.1875rem);
+  color: var(--main-1);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+h3 {
+  font-family: "Rethink Sans";
+  font-size: clamp(1.25rem, 4vw, 1.4375rem);
+  color: var(--main-1);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+h4 {
+  font-family: "Rethink Sans";
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--main-1);
+}
+
+p {
+  font-family: "Rethink Sans";
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  color: var(--main-1);
+}
+
+p.small {
+  font-size: clamp(0.625rem, 1.5vw, 0.825rem);
+  font-family: "Rethink Sans";
+}
+
+.display {
+  font-size: clamp(2.5rem, 5vw, 6rem);
+  color: var(--main-1);
+}
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.regular {
+  border: 2px solid var(--main-1);
+  background-image: url(/illustrations/svg/spiralPink.svg);
+  background-position: -80% 280%;
+  background-repeat: no-repeat;
+  background-color: #dbd976;
+}
+
+.vip {
+  border: 2px solid var(--main-1);
+  background-image: url(/illustrations/svg/lp2.svg);
+  background-position: -500% 170%, 100%;
+  background-size: 104%;
+  background-repeat: no-repeat;
+  background-color: #d76f2d;
+}
+
+.vip-image {
+  background-image: url(/illustrations/svg/lp2.svg);
+  background-position: 140% 20%, 10%;
+  background-size: 50%;
+  background-repeat: no-repeat;
+}
+.regular-image {
+  background-image: url(/illustrations/svg/spiralPink.svg);
+  background-position: 110% 90%, 10%;
+  background-size: 50%;
+  background-repeat: no-repeat;
+}
+
+.vintage-filter {
+  background-image: url(/img/filterbg.webp);
+  object-fit: cover;
+}
+
+.cardlabel {
+  position: absolute;
+  left: 10%;
+  top: -65%;
+}
+
+.cardlabel-container {
+  position: relative;
+}
+
+.imgcontainer {
+  position: relative;
+}
+
+.imgcontainer::before {
+  content: "";
+  background-image: url("/illustrations/pink-flower.svg");
+  position: absolute;
+  width: 25rem;
+  height: 20rem;
+  left: -35%;
+  top: -13.5rem;
+  z-index: -1;
+}
+
+input {
+  background-color: var(--main-2);
+  border: 1px var(--main-1) solid;
+  border-radius: 6px;
+  padding: 0 6px 0 6px;
+  font-family: "Rethink Sans";
+  color: var(--main-1);
+}
+label {
+  margin-bottom: 2px;
+  color: var(--main-1);
+  font-family: "Rethink Sans";
+}
+
+.button {
+  color: #fff8db;
+  font-family: "Rethink Sans";
+  font-size: 1rem;
+  background-color: #f0047f;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  position: relative;
+  box-shadow: 4px 4px 0px #3a140b;
+  transform: scale(1.02);
+  transition: all 0.2s ease-in;
+}
+.button:hover {
+  box-shadow: 8px 8px 0px #3a140b;
+  transform: scale(1.02);
+  transition: all 0.2s ease-in;
+  color: #3a140b;
+}
+
+.select-container {
+  display: flex;
+  justify-content: start;
+  position: relative;
+  min-width: 190px;
+  height: 45px;
+}
+
+.select-box {
+  border: none;
+  appearance: none;
+  padding: 0 35px 5px 0px;
+  width: 100%;
+  background-color: #fff8db;
+  display: flex;
+  color: #3a140b;
+
+  outline: none;
+  border: none;
+  gap: 10px;
+  cursor: pointer;
+  text-align: end;
+}
+
+.select-icon {
+  position: absolute;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  top: 1px;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+.shadow-custom:hover {
+  box-shadow: 14px 12px 0px #3a140b;
+  transform: scale(1.02);
+  transition: all 0.2s linear;
+}
+
+.shadow-custom {
+  transition: all 0.1s linear;
+}
