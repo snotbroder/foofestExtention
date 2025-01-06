@@ -48,13 +48,8 @@ function LineUpComponent() {
     <article>
       <div className="font-bold justify-center flex-row  text-2xl sm:text-3xl inline-flex gap-8 font-rethink text-main-1 my-6">
         <div className="select-container ">
-          <select
-            className="select-box"
-            name="genres"
-            id="select-genre"
-            onChange={(e) => setPickedGenre(e.target.value)}
-          >
-            <option>FILTER BY GENRE</option>
+          <select className="select-box" name="genres" id="select-genre" onChange={(e) => setPickedGenre(e.target.value)}>
+            <option value="">Show all results</option>
             {genres.map((genre, index) => {
               return (
                 <option value={genre} key={index}>
@@ -68,10 +63,7 @@ function LineUpComponent() {
           </div>
         </div>
         <div>
-          <button
-            className="text-main-1 uppercase font-rethink "
-            onClick={handleAscending}
-          >
+          <button className="text-main-1 uppercase font-rethink " onClick={handleAscending}>
             {isListAscending ? "Z-A" : "A-Z"}
           </button>
         </div>
@@ -79,21 +71,8 @@ function LineUpComponent() {
       <div className="bg-[url('/illustrations/svg/circle.svg')] bg-contain bg-repeat-y bg-no-repeat-x  -mx-mobile lg:-mx-desktop py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 items-center place-items-center gap-10 mx-mobile pb-16 lg:mx-desktop">
           {currentData.map((band) => {
-            const logo = band.logo.startsWith("http")
-              ? band.logo
-              : `${BASE_URL}${band.logo}`;
-            return (
-              (!pickedGenre || band.genre === pickedGenre) && (
-                <BandCard
-                  alt={`Logo of ${band.name}`}
-                  key={band.name}
-                  imgSrc={logo}
-                  name={band.name}
-                  genre={band.genre}
-                  slug={band.slug}
-                />
-              )
-            );
+            const logo = band.logo.startsWith("http") ? band.logo : `${BASE_URL}${band.logo}`;
+            return (!pickedGenre || band.genre === pickedGenre) && <BandCard alt={`Logo of ${band.name}`} key={band.name} imgSrc={logo} name={band.name} genre={band.genre} slug={band.slug} />;
           })}
         </div>
       </div>
