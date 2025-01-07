@@ -6,7 +6,7 @@
 :root {
   --main-1: #3a140b;
   --main-2: #fff8db;
-  --background: var(--main-2);
+  background: var(--main-2);
 }
 h1 {
   font-family: "Spicy Rice";
@@ -55,8 +55,6 @@ p.small {
   color: var(--main-1);
 }
 body {
-  color: var(--foreground);
-  background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -157,39 +155,6 @@ label {
   color: #3a140b;
 }
 
-.select-container {
-  display: flex;
-  justify-content: start;
-  position: relative;
-  min-width: 190px;
-  height: 45px;
-}
-
-.select-box {
-  border: none;
-  appearance: none;
-  padding: 0 35px 5px 0px;
-  width: 100%;
-  background-color: #fff8db;
-  display: flex;
-  color: #3a140b;
-
-  outline: none;
-  border: none;
-  gap: 10px;
-  cursor: pointer;
-  text-align: end;
-}
-
-.select-icon {
-  position: absolute;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  align-self: center;
-  top: 1px;
-}
-
 .no-scroll {
   overflow: hidden;
 }
@@ -202,4 +167,10 @@ label {
 
 .shadow-custom {
   transition: all 0.1s linear;
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+  }
 }
