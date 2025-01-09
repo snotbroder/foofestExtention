@@ -19,7 +19,7 @@ export const useBasketFunctionality = create((set, get) => ({
 
   setNewStep: (step) => set({ bookingStep: step }),
 
-  //kan slettes
+  //opdater holding area data
   // setReservedData: (selectedArea, ticketAmount) =>
   //   set(() => ({
   //     reservedData: { selectedArea, ticketAmount },
@@ -48,10 +48,9 @@ export const useBasketFunctionality = create((set, get) => ({
     const setNewStep = useBasketFunctionality.getState().setNewStep;
     const bookingStep = useBasketFunctionality.getState().bookingStep;
     const reservationId = useBasketStore.getState().reservationId;
-    if (reservationId === undefined) {
-      return alert("Error: reservationId undefined please try another camp");
-    } else {
+    //skift step, men kun hvis reservationId ikke er undefined
+    if (reservationId !== undefined) {
       setNewStep(bookingStep + 1);
-    }
+    } else return alert("Error: reservationId undefined please try another camp");
   },
 }));
