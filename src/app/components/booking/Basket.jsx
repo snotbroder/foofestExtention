@@ -30,17 +30,10 @@ function Basket() {
   }
   //fundet hjælp herfra med for https://bito.ai/resources/javascript-calculate-total-price-javascript-explained/
   const reservationFee = 99;
-  const ticketTotal = ticketInfo.reduce(
-    (total, ticket) => total + ticket.itemPrice * ticket.itemMultiply,
-    0
-  );
+  const ticketTotal = ticketInfo.reduce((total, ticket) => total + ticket.itemPrice * ticket.itemMultiply, 0);
 
-  const campTotal = campInfo.reduce(
-    (total, camp) => total + camp.itemPrice * camp.itemMultiply,
-    0
-  );
-  const totalPrice =
-    ticketTotal + campTotal + reservationFee + greenCampingTrue;
+  const campTotal = campInfo.reduce((total, camp) => total + camp.itemPrice * camp.itemMultiply, 0);
+  const totalPrice = ticketTotal + campTotal + reservationFee + greenCampingTrue;
 
   function sessionInvalid() {
     setNewStep(0);
@@ -69,15 +62,9 @@ function Basket() {
   //renderingen
   const renderer = ({ minutes, seconds }) => {
     //få tiden til at se anderledes ud
-    const formattedTime = `${String(minutes).padStart(2, "0")}:${String(
-      seconds
-    ).padStart(2, "0")}`;
+    const formattedTime = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
     timeLeftRef.current = formattedTime; // Update time-left
-    return (
-      <span className="bg-secondary p-2 px-3 rounded-rounded-reg text-main-2 font-semibold">
-        {formattedTime}
-      </span>
-    );
+    return <span className="bg-secondary p-2 px-3 rounded-rounded-reg text-main-2 font-semibold">{formattedTime}</span>;
   };
 
   const errorCamp = false;
@@ -93,77 +80,39 @@ function Basket() {
     <div>
       <section className="fixed shadow-[-1px_-9px_56px_-13px_rgba(0,0,0,0.50)] md:shadow-none lg:shadow-none max-h-max -mx-mobile row-span-1 row-start-1 col-start-2 lg:mx-0 lg:relative    bottom-0 after:text-main-2  w-full bg-main-2 border-y-2 lg:border-2 border-main-1 border-solid p-8 rounded-rounded-reg z-50 ">
         <article className="font-rethink place-self-end">
-          <Countdown
-            onComplete={sessionInvalid}
-            date={countdownDate}
-            renderer={renderer}
-          />
+          <Countdown onComplete={sessionInvalid} date={countdownDate} renderer={renderer} />
         </article>{" "}
         <div className={`${openBasket ? "block" : "hidden"} lg:block`}>
           <h2>Basket</h2>
           <article className="flex flex-col gap-2 my-6">
-            <p className=" small py-1 border-b-[1px] border-tertiary border-solid  font-semibold w-max">
-              Tickets
-            </p>
+            <p className=" small py-1 border-b-[1px] border-tertiary border-solid  font-semibold w-max">Tickets</p>
             {
               //Tjek on nogen af billetterne har itemMultiply value 0, så vis det her
-              ticketInfo.every((ticket) => ticket.itemMultiply === 0) && (
-                <p className=" small text-feedback-error">
-                  Please choose a ticket
-                </p>
-              )
+              ticketInfo.every((ticket) => ticket.itemMultiply === 0) && <p className=" small text-feedback-error">Please choose a ticket</p>
             }
 
             {ticketInfo //Sørg for kun at loope gennem billetter der er med i beregningen, altså har en itemMultiply value over 0
               .filter((ticket) => ticket.itemMultiply > 0)
               .map((ticket, index) => {
-                return (
-                  <BasketItem
-                    key={index}
-                    itemTitle={ticket.itemTitle}
-                    itemMultiply={ticket.itemMultiply}
-                    itemPrice={ticket.itemPrice}
-                  ></BasketItem>
-                );
+                return <BasketItem key={index} itemTitle={ticket.itemTitle} itemMultiply={ticket.itemMultiply} itemPrice={ticket.itemPrice}></BasketItem>;
               })}
           </article>
 
           <article className="flex flex-col gap-2 my-6">
-            <p className=" small py-1 border-b-[1px] border-tertiary border-solid font-semibold w-max">
-              Camp
-            </p>
+            <p className=" small py-1 border-b-[1px] border-tertiary border-solid font-semibold w-max">Camp</p>
 
             <h4>
               Selected camp:{" "}
               <span className="font-normal">
-                {chosenCamp}{" "}
-                {chosenCamp === "" && (
-                  <p className=" small text-feedback-error ">
-                    {" "}
-                    Please choose a camp
-                  </p>
-                )}
+                {chosenCamp} {chosenCamp === "" && <p className=" small text-feedback-error "> Please choose a camp</p>}
               </span>
             </h4>
             {campInfo
               .filter((camp) => camp.itemMultiply > 0)
               .map((camp, index) => {
-                return (
-                  <BasketItem
-                    key={index}
-                    itemTitle={camp.itemTitle}
-                    itemMultiply={camp.itemMultiply}
-                    itemPrice={camp.itemPrice}
-                  ></BasketItem>
-                );
+                return <BasketItem key={index} itemTitle={camp.itemTitle} itemMultiply={camp.itemMultiply} itemPrice={camp.itemPrice}></BasketItem>;
               })}
-            {greenCamping === true && (
-              <BasketItem
-                itemTitle="Green camping"
-                itemMultiply="1"
-                itemPrice="249"
-              ></BasketItem>
-            )}
+            {greenCamping === true && <BasketItem itemTitle="Green camping" itemMultiply="1" itemPrice="249"></BasketItem>}
           </article>
 
           <article className="font-rethink text-main-1 border-b-2 border-b-tertiary border-b-solid pb-2 my-1 mb-4 flex justify-between">
@@ -176,17 +125,18 @@ function Basket() {
             <span>TOTAL</span>
             <span className="font-bold text-4xl my-2">{totalPrice},-</span>
           </span>
-          {reservationId !== "" ? (
+          {reservationId && <p className="small text-feedback-disabled-2">ReservationID: {reservationId}</p>}
+
+          {/* {reservationId !== "" ? (
             <p className="small text-feedback-disabled-2">
               ReservationID: {reservationId}
             </p>
           ) : (
             ""
-          )}
+          )} */}
           <div className="font-rethink text-xs text-feedback-error text-end">
             {errorCamp && "Please choose a camp to continue"}
-            {errorTents &&
-              "You can only buy tents based on the amount of tickets "}
+            {errorTents && "You can only buy tents based on the amount of tickets "}
           </div>
           <button onClick={handleOpenBasket} className="button lg:hidden">
             {openBasket ? "close " : "open "}
@@ -204,9 +154,7 @@ export function BasketItem({ itemTitle, itemMultiply, itemPrice }) {
   return (
     <div className="border-b-2 border-b-tertiary border-b-solid my-1 pb-2 flex justify-between">
       <div className="flex justify-between place-items-center">
-        <h4 className={`${itemMultiply === 0 ? "hidden" : ""} font-bold`}>
-          {itemMultiply}
-        </h4>
+        <h4 className={`${itemMultiply === 0 ? "hidden" : ""} font-bold`}>{itemMultiply}</h4>
         <RiAddLine className="origin-center rotate-45" />
         <h4 className="uppercase ">{itemTitle}</h4>
       </div>
