@@ -95,7 +95,7 @@ function CampingExtra() {
           if (chosenCamp === "") {
           } else {
             reserveSpotHandler();
-            setNewStep(step + 1);
+            // setNewStep(step + 1);
           }
         }}
         className={`button mt-6 grid place-self-center lg:place-self-end ${chosenCamp === "" ? "opacity-60 cursor-not-allowed" : ""}`}

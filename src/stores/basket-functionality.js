@@ -18,24 +18,40 @@ export const useBasketFunctionality = create((set, get) => ({
   },
 
   setNewStep: (step) => set({ bookingStep: step }),
-  setReservedData: (selectedArea, ticketAmount) =>
-    set(() => ({
-      reservedData: { selectedArea, ticketAmount },
-    })),
-  reservedData: {
-    selectedArea: "",
-    ticketAmount: 0,
-  },
+
+  //kan slettes
+  // setReservedData: (selectedArea, ticketAmount) =>
+  //   set(() => ({
+  //     reservedData: { selectedArea, ticketAmount },
+  //   })),
+
+  // holding area for dataen inden det puttes til api
+  // reservedData: {
+  //   selectedArea: chosenCamp,
+  //   ticketAmount: totalTickets,
+  // },
 
   reserveSpotHandler: async function () {
     try {
-      const { selectedArea, ticketAmount } = get().reservedData; // Access reservedData
-      const data = await reserveSpot(selectedArea, ticketAmount);
-      const setReserveId = useBasketStore.getState().setReserveId;
+      // const { selectedArea, ticketAmount } = get().reservedData; // Hent reservedData
+      //Hent de respektive parametre og få deres nuværende og opdaterede state
+      const chosenCamp = useBasketStore.getState().chosenCamp;
+      const totalTickets = useBasketStore.getState().totalTickets();
+
+      const data = await reserveSpot(chosenCamp, totalTickets);
+      const setReserveId = useBasketStore.getState().setReserveId; // Hent state fra andet basket store
       setReserveId(data["id"]);
-      console.log("data med id", data["id"]);
+      console.log("reservationId", data["id"]);
     } catch (error) {
       console.error("fejl", error);
+    }
+    const setNewStep = useBasketFunctionality.getState().setNewStep;
+    const bookingStep = useBasketFunctionality.getState().bookingStep;
+    const reservationId = useBasketStore.getState().reservationId;
+    if (reservationId === undefined) {
+      return alert("Error: reservationId undefined please try another camp");
+    } else {
+      setNewStep(bookingStep + 1);
     }
   },
 }));
