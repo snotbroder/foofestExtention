@@ -45,6 +45,7 @@ export const useBasketFunctionality = create((set, get) => ({
     } catch (error) {
       console.error("fejl", error);
     }
+
     const setNewStep = useBasketFunctionality.getState().setNewStep;
     const bookingStep = useBasketFunctionality.getState().bookingStep;
     const reservationId = useBasketStore.getState().reservationId;
