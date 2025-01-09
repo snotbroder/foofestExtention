@@ -1,7 +1,10 @@
 "use client";
 import { create } from "zustand";
+import { reserveSpot } from "@/app/api";
 
-export const useBasketFunctionality = create((set) => ({
+import { useBasketStore } from "@/stores/basket-stores";
+
+export const useBasketFunctionality = create((set, get) => ({
   bookingStep: 0,
 
   reservationTime: 5 * 60 * 1000, //reserveringstiden
@@ -15,4 +18,24 @@ export const useBasketFunctionality = create((set) => ({
   },
 
   setNewStep: (step) => set({ bookingStep: step }),
+  setReservedData: (selectedArea, ticketAmount) =>
+    set(() => ({
+      reservedData: { selectedArea, ticketAmount },
+    })),
+  reservedData: {
+    selectedArea: "",
+    ticketAmount: 0,
+  },
+
+  reserveSpotHandler: async function () {
+    try {
+      const { selectedArea, ticketAmount } = get().reservedData; // Access reservedData
+      const data = await reserveSpot(selectedArea, ticketAmount);
+      const setReserveId = useBasketStore.getState().setReserveId;
+      setReserveId(data["id"]);
+      console.log("data med id", data["id"]);
+    } catch (error) {
+      console.error("fejl", error);
+    }
+  },
 }));

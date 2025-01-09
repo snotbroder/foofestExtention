@@ -41,13 +41,10 @@ export default function BookingPage() {
               <CampingCards />
               <CampingExtra></CampingExtra>
             </section>
-            {/* <button className=" font-rethink text-main-2 font-sm bg-accent-1 px-4 py-2 hover:text-main-1 uppercase font-bold max-w-[100%] shadow-[4px_4px_0px_#3a140b] transform scale-[1.02] transition-all duration-200 ease-in hover:shadow-[8px_8px_0px_#3a140b] grid place-self-center lg:place-self-end">
-              Next step
-            </button> */}
           </article>
         )}
         {step === 2 && (
-          <article className="bg-primary rounded-rounded-reg p-10">
+          <article>
             <ContactPage></ContactPage>
           </article>
         )}
@@ -66,9 +63,7 @@ export default function BookingPage() {
             <div className="grid grid-cols-1 sm:grid-cols-[2fr_1fr]">
               <div>
                 <h1>Booking completed</h1>
-                <h2 className="mb-6">
-                  Thank you for your order, we will see you in the summer!
-                </h2>
+                <h2 className="mb-6">Thank you for your order, we will see you in the summer!</h2>
                 <CtaButton href={"/"} text="Back to home"></CtaButton>
               </div>
               <motion.div
@@ -80,12 +75,7 @@ export default function BookingPage() {
                 }}
                 className="place-self-center hidden sm:block"
               >
-                <Image
-                  src="/illustrations/svg/spiralPink.svg"
-                  width={200}
-                  height={200}
-                  alt="pink spiral"
-                />
+                <Image src="/illustrations/svg/spiralPink.svg" width={200} height={200} alt="pink spiral" />
               </motion.div>
             </div>
             <section className="mt-16 pt-6 border-t-2 border-tertiary">

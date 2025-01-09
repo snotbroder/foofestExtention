@@ -31,30 +31,24 @@ function ContactPage() {
   // Laver et array, hvis længde svarer til værdien af totatalTickets. Derved skabes et objekt i forms-array, for hver person der vil købe billet.
 
   return (
-    <div>
-      <form
-        action={sendData}
-        onSubmit={() => setNewStep(step + 1)}
-        className="flex flex-col gap-8 "
-      >
-        <fieldset>
-          <legend className="font-rethink text-2xl mb-6 text-main-1">
-            Contact information
-          </legend>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            {forms.map((_, index) => {
-              return <ContactForm key={index} index={index} />;
-            })}
-          </div>
-        </fieldset>
-        <button
-          type="submit"
-          className="bg-accent-1 text-sm button flex self-start px-4 py-0.5"
-        >
-          Submit
-        </button>
-      </form>
-    </div>
+    <section>
+      <h3>Input contact information</h3>
+      <div className="bg-primary rounded-rounded-reg p-10">
+        <form action={sendData} onSubmit={() => setNewStep(step + 1)} className="flex flex-col gap-8 ">
+          <fieldset>
+            {/* <legend className="font-rethink text-2xl mb-6 text-main-1">Contact information</legend> */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+              {forms.map((_, index) => {
+                return <ContactForm key={index} index={index} />;
+              })}
+            </div>
+          </fieldset>
+          <button type="submit" className="button grid place-self-end">
+            Next step
+          </button>
+        </form>
+      </div>
+    </section>
   );
 }
 
