@@ -22,6 +22,7 @@ export const useBasketFunctionality = create((set, get) => ({
     set(() => ({
       reservedData: { selectedArea, ticketAmount },
     })),
+  //holding area
   reservedData: {
     selectedArea: "",
     ticketAmount: 0,
