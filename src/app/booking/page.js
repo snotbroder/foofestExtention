@@ -29,7 +29,7 @@ export default function BookingPage() {
       </h1>
       {step < 5 && <BookingSteps></BookingSteps>}
 
-      <section className="lg:grid grid-cols-[2fr_1fr] grid-rows-1 gap-4 ">
+      <section className="lg:grid grid-cols-[3fr_1fr] grid-rows-1 gap-4 ">
         {step === 0 && (
           <article>
             <TicketSelectParent></TicketSelectParent>
