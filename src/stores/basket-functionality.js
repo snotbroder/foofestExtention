@@ -46,8 +46,8 @@ export const useBasketFunctionality = create((set, get) => ({
       console.error("fejl", error);
     }
 
-    const setNewStep = useBasketFunctionality.getState().setNewStep;
-    const bookingStep = useBasketFunctionality.getState().bookingStep;
+    const setNewStep = get().setNewStep;
+    const bookingStep = get().bookingStep;
     const reservationId = useBasketStore.getState().reservationId;
     //skift step, men kun hvis reservationId ikke er undefined
     if (reservationId !== undefined) {
